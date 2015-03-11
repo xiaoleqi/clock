@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
     public TextView tv;
-    public Button b;
+    public Button b; 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
