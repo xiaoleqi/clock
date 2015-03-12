@@ -9,6 +9,7 @@ import android.widget.TextView;
  */
 public class RepeatCountDownTimer {
     private int duration,loop;
+    private long milliUntilDone;
     private TextView display, message;
     private CountDownTimer mainTimer;
     private CountDownTimer tempTimer;
@@ -22,6 +23,7 @@ public class RepeatCountDownTimer {
             @Override
             public void onTick(long millisUntilFinished) {
                 display.setText(millisUntilFinished/1000 + " seconds left");
+                milliUntilDone = millisUntilFinished;
             }
 
             @Override
