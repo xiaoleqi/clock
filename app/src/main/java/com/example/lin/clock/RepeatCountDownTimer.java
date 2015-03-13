@@ -19,7 +19,7 @@ public class RepeatCountDownTimer {
         loop = totalLoop;
         display = main;
         message = end;
-        mainTimer = new CountDownTimer(duration, loop) {
+        mainTimer = new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 display.setText(millisUntilFinished/1000 + " seconds left");
@@ -37,7 +37,7 @@ public class RepeatCountDownTimer {
         if (loop > 0){
             mainTimer.start();
             loop--;
-            message.setText(loop + " more");
+            message.setText((loop + 1) + " more");
         }
         else{
             message.setText("done!");
@@ -46,6 +46,8 @@ public class RepeatCountDownTimer {
 
     public void startCountDown(){
         mainTimer.start();
+        loop--;
+        message.setText( (loop + 1) + " more");
     }
 
     public void stopCountDown(){

@@ -12,37 +12,30 @@ import android.widget.ToggleButton;
 
 
 public class MainActivity extends ActionBarActivity {
-    public TextView tv;
+    public TextView tv, msgView;
     public Button b;
     public int i = 3;
     public long total = 6000;
-    final CountDownTimer ct = new CountDownTimer(total, 1000) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            total = millisUntilFinished;
-            tv.setText("seconds remaining: " + millisUntilFinished / 1000);
-        }
+    private RepeatCountDownTimer ct;
 
-        @Override
-        public void onFinish() {
-            tv.setText("done");
-            restart();
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = (TextView)findViewById(R.id.g);
+        msgView = (TextView)findViewById(R.id.messageDisplay);
         b = (Button)findViewById(R.id.b);
-
+        ct = new RepeatCountDownTimer(3000, 3, tv, msgView);
+        ct.startCountDown();
     }
+    /*
 
     public void selfDestruct(View view) {
 
         ct.start();
 
     }
+
     public void stopClock(View view){
         boolean on = ((ToggleButton) view).isChecked();
         if(on) {
@@ -57,6 +50,8 @@ public class MainActivity extends ActionBarActivity {
             i--;
         }
     }
+    */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
