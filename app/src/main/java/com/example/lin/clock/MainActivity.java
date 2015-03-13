@@ -8,11 +8,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends ActionBarActivity {
     public TextView tv;
-    public Button b; 
+    public Button b;
+    public int i = 3;
+    public long total = 6000;
+    final CountDownTimer ct = new CountDownTimer(total, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            total = millisUntilFinished;
+            tv.setText("seconds remaining: " + millisUntilFinished / 1000);
+        }
+
+        @Override
+        public void onFinish() {
+            tv.setText("done");
+            restart();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,19 +39,23 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void selfDestruct(View view) {
-        CountDownTimer ct = new CountDownTimer(3000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                tv.setText("seconds remaining: " + millisUntilFinished / 1000);
-            }
 
-            @Override
-            public void onFinish() {
-                tv.setText("done");
-            }
-        };
         ct.start();
 
+    }
+    public void stopClock(View view){
+        boolean on = ((ToggleButton) view).isChecked();
+        if(on) {
+            ct.cancel();
+        }else{
+            ct.start();
+        }
+    }
+    public void restart() {
+        if(i > 0) {
+            ct.start();
+            i--;
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
