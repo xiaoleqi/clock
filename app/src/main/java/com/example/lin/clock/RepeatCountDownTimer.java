@@ -36,15 +36,18 @@ public class RepeatCountDownTimer {
     private void repeatCountDown(){
         if (loop > 0){
             mainTimer.start();
+            display.setText(duration/1000 + " seconds left");            
             loop--;
             message.setText((loop + 1) + " more");
         }
         else{
+            display.setText("");
             message.setText("done!");
         }
     }
 
     public void startCountDown(){
+        display.setText(duration/1000 + " seconds left");
         mainTimer.start();
         loop--;
         message.setText( (loop + 1) + " more");
