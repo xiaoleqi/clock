@@ -19,35 +19,42 @@ public class RepeatCountDownTimer {
         loop = totalLoop;
         display = main;
         message = end;
-        mainTimer = new CountDownTimer(duration, 1000) {
+
+        mainTimer = new CountDownTimer(duration, 500) {
+            int x = duration/1000;
+
             @Override
             public void onTick(long millisUntilFinished) {
-                display.setText(millisUntilFinished/1000 + " seconds left");
+                display.setText(Integer.toString(x));
                 milliUntilDone = millisUntilFinished;
+                x--;
             }
 
             @Override
             public void onFinish() {
-                repeatCountDown();
+                //x = duration/1000;
+                //repeatCountDown();
             }
         };
     }
 
     private void repeatCountDown(){
+
         if (loop > 0){
+            message.setText(loop + "  more");
             mainTimer.start();
-            display.setText(duration/1000 + " seconds left");            
             loop--;
-            message.setText((loop + 1) + " more");
         }
         else{
             display.setText("");
             message.setText("done!");
         }
+
+
     }
 
     public void startCountDown(){
-        display.setText(duration/1000 + " seconds left");
+       // display.setText(duration/1000 + " seconds left");
         mainTimer.start();
         loop--;
         message.setText( (loop + 1) + " more");
