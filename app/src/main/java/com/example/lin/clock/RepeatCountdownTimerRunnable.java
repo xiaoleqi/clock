@@ -1,6 +1,7 @@
 package com.example.lin.clock;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 /**
@@ -16,7 +17,8 @@ public class RepeatCountdownTimerRunnable {
     public RepeatCountdownTimerRunnable(long millis, int loop){
         this.timeInMillis = millis;
         this.loopNum = loop;
-        this.handler = new Handler();
+        // handler must be running in the main ui thread
+        this.handler = new Handler(Looper.getMainLooper());
     }
 
     public void start(){
