@@ -22,13 +22,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /* debug
         tv = (TextView)findViewById(R.id.g);
         msgView = (TextView)findViewById(R.id.messageDisplay);
         b = (Button)findViewById(R.id.b);
         ct = new RepeatCountDownTimer(3000, 3, tv, msgView);
         ct.startCountDown();
+        */
+        RepeatCountdownTimerRunnable runnableTimer = new RepeatCountdownTimerRunnable(5000, 1);
+        runnableTimer.start();
     }
-    /*
+    /* debug
 
     public void selfDestruct(View view) {
 
