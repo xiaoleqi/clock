@@ -17,6 +17,7 @@ public class MainActivity extends ActionBarActivity {
     public int i = 3;
     public long total = 6000;
     private RepeatCountDownTimer ct;
+    private RepeatCountdownTimerRunnable runnableTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,17 @@ public class MainActivity extends ActionBarActivity {
         ct = new RepeatCountDownTimer(3000, 3, tv, msgView);
         ct.startCountDown();
         */
-        tv = (TextView)findViewById(R.id.g);
-        RepeatCountdownTimerRunnable runnableTimer = new RepeatCountdownTimerRunnable(5000, 1, tv);
+        tv = (TextView)findViewById(R.id.countdown);
+        runnableTimer = new RepeatCountdownTimerRunnable(5000, 1, tv);
+
+    }
+
+    public void startCountdown(View v){
         runnableTimer.start();
+    }
+
+    public void cancelCountdown(View v){
+        runnableTimer.cancel();
     }
     /* debug
 

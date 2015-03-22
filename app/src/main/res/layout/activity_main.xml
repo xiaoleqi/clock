@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/g"
+        android:id="@+id/countdown"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
@@ -18,21 +18,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/b"
-        android:onClick="selfDestruct"
-        android:layout_below="@+id/g"
-        android:layout_alignLeft="@+id/g"
-        android:layout_alignStart="@+id/g"
-        android:layout_marginTop="86dp" />
+        android:id="@+id/start"
+        android:layout_below="@+id/countdown"
+        android:layout_marginTop="86dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="startCountdown" />
 
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New ToggleButton"
-        android:id="@+id/tB"
-        android:layout_below="@+id/b"
-        android:onClick="stopClock"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/cancel"
+        android:layout_below="@+id/start"
+        android:layout_centerHorizontal="true"
+        android:onClick="cancelCountdown" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,10 +39,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/messageDisplay"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/b"
-        android:layout_alignEnd="@+id/b"
-        android:layout_marginTop="101dp" />
+        android:layout_below="@+id/countdown"
+        android:layout_marginTop="46dp"
+        android:layout_centerHorizontal="true"
+     />
 
 
 </RelativeLayout>

@@ -43,6 +43,7 @@ public class RepeatCountdownTimerRunnable {
                 if (currentMillis <= 0){
                     Log.d("countdown", "done!");
                     display.setText("Done!");
+                    // repeat countdown if necessary
                     if (loopNum > 0){
                         currentMillis = timeInMillis;
                         handler.postDelayed(this, interval);
@@ -64,6 +65,7 @@ public class RepeatCountdownTimerRunnable {
     public void cancel(){
         // stops the countdown runnable and reset time
         handler.removeCallbacksAndMessages(null);
+        Log.d("countdown", "cancelled!");
         display.setText("Cancelled");
         currentMillis = timeInMillis;
     }
