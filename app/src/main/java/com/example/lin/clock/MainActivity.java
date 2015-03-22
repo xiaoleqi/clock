@@ -13,10 +13,8 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends ActionBarActivity {
     public TextView tv, msgView;
-    public Button b;
-    public int i = 3;
+    public int i = 1;
     public long total = 6000;
-    private RepeatCountDownTimer ct;
     private RepeatCountdownTimerRunnable runnableTimer;
 
     @Override
@@ -31,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         ct.startCountDown();
         */
         tv = (TextView)findViewById(R.id.countdown);
-        runnableTimer = new RepeatCountdownTimerRunnable(5000, 1, tv);
+        runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv);
 
     }
 
