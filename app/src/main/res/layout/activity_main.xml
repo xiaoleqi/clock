@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="@string/display_countdown"
         android:id="@+id/countdown"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -17,27 +17,28 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/button_start"
         android:id="@+id/start"
         android:layout_below="@+id/countdown"
         android:layout_marginTop="86dp"
         android:layout_centerHorizontal="true"
         android:onClick="startCountdown" />
 
-    <ToggleButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New ToggleButton"
+        android:text="@string/button_cancel"
         android:id="@+id/cancel"
         android:layout_below="@+id/start"
         android:layout_centerHorizontal="true"
-        android:onClick="cancelCountdown" />
+        android:onClick="cancel()"
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="@string/display_loop"
         android:id="@+id/messageDisplay"
         android:layout_below="@+id/countdown"
         android:layout_marginTop="46dp"

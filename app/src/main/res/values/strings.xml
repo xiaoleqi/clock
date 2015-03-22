@@ -4,5 +4,9 @@
     <string name="app_name">clock</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="display_countdown">Ready</string>
+    <string name="display_loop">repeat</string>
+    <string name="button_start">start</string>
+    <string name="button_cancel">cancel</string>
 
 </resources>

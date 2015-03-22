@@ -43,9 +43,9 @@ public class RepeatCountdownTimerRunnable {
                 if (currentMillis <= 0){
                     Log.d("countdown", "done!");
                     display.setText("Done!");
+                    currentMillis = timeInMillis;
                     // repeat countdown if necessary
                     if (loopNum > 0){
-                        currentMillis = timeInMillis;
                         handler.postDelayed(this, interval);
                         loopNum--;
                     }
