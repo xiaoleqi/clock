@@ -6,8 +6,11 @@ import android.util.Log;
 import android.widget.TextView;
 
 /**
+ * Performs countdown in background thread and provides methods for starting, cancelling, pausing
+ * and resuming a countdown. The running thread in this class updates UI elements periodically, or
+ * upon method calls. Thread running by this class must be handled on the main UI thread.
+ * @author Gordon
  * Created by Gordon on 2015-03-18.
- * Countdown Timer that runs by a runnable with handler
  */
 public class RepeatCountdownTimerRunnable {
     private long timeInMillis, currentMillis;
@@ -17,6 +20,15 @@ public class RepeatCountdownTimerRunnable {
     private TextView display, notice;
 
     public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n){
+        /**
+         * Constructs a RepeatCountdownTimerRunnable with duration, number of times to repeat,
+         * a view to display remaining time, and a view to display remaining loop.
+         *
+         * @param millis duration in milliseconds
+         * @param loop number of times to repeat this countdown
+         * @param v view to display remaining time
+         * @param n view to display remaining loop
+         */
 
         if(loop < 0){
             throw new IllegalArgumentException("loop count must be >= 0");
@@ -35,6 +47,10 @@ public class RepeatCountdownTimerRunnable {
     }
 
     public void start(){
+        /**
+         * Starts the countdown by creating the runnable, biding it to pre-defined handler
+         * in this class and post the newly created runnable
+         */
         Log.d("countdown", "starting");
         //create the runnable which does the countdown
         final Runnable counter = new Runnable() {
@@ -77,7 +93,9 @@ public class RepeatCountdownTimerRunnable {
     }
 
     public void cancel(){
-        // stops the countdown runnable and reset time
+        /**
+         * Stops this countdown and reset the current time counter
+         */
         handler.removeCallbacksAndMessages(null);
         Log.d("countdown", "cancelled!");
         display.setText("Cancelled");
@@ -85,6 +103,10 @@ public class RepeatCountdownTimerRunnable {
     }
 
     public void pause(){
+        /**
+         * Pause this countdown by emptying the handler's callback queue.
+         * The current time counter stores the time remaining in this countdown.
+         */
         // TODO: implement method to pause countdown
         // stops the countdown runnable
         handler.removeCallbacksAndMessages(null);
