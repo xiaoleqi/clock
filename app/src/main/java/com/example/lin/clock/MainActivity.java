@@ -29,7 +29,8 @@ public class MainActivity extends ActionBarActivity {
         ct.startCountDown();
         */
         tv = (TextView)findViewById(R.id.countdown);
-        runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv);
+        msgView = (TextView)findViewById(R.id.messageDisplay);
+        runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv, msgView);
 
     }
 
@@ -39,6 +40,10 @@ public class MainActivity extends ActionBarActivity {
 
     public void cancelCountdown(View v){
         runnableTimer.cancel();
+    }
+
+    public void pauseCountdown(View v){
+        runnableTimer.pause();
     }
     /* debug
 

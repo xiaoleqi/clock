@@ -8,5 +8,6 @@
     <string name="display_loop">repeat</string>
     <string name="button_start">start</string>
     <string name="button_cancel">cancel</string>
+    <string name="btn_pause">pause</string>
 
 </resources>

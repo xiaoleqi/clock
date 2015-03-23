@@ -29,9 +29,9 @@
         android:layout_height="wrap_content"
         android:text="@string/button_cancel"
         android:id="@+id/cancel"
-        android:layout_below="@+id/start"
         android:layout_centerHorizontal="true"
-        android:onClick="cancel()"
+        android:layout_below="@+id/pause"
+        android:onClick="cancelCountdown"
          />
 
     <TextView
@@ -44,6 +44,15 @@
         android:layout_marginTop="46dp"
         android:layout_centerHorizontal="true"
      />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_pause"
+        android:id="@+id/pause"
+        android:layout_below="@+id/start"
+        android:layout_centerHorizontal="true"
+        android:onClick="pauseCountdown"/>
 
 
 </RelativeLayout>
