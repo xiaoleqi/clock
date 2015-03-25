@@ -1,14 +1,13 @@
 package com.example.lin.clock;
 
-import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -30,6 +29,12 @@ public class MainActivity extends ActionBarActivity {
         */
         tv = (TextView)findViewById(R.id.countdown);
         msgView = (TextView)findViewById(R.id.messageDisplay);
+        /* attempt to format time
+        long tempMinute = TimeUnit.MILLISECONDS.toMinutes(60000);
+        long tempSecond = TimeUnit.MILLISECONDS.toSeconds(60000);
+        String timeOnscreen = String.format("%d min %d sec", tempMinute, tempSecond);
+        tv.setText(timeOnscreen);
+        */
         runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv, msgView);
 
     }
