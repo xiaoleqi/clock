@@ -21,16 +21,17 @@ public class RepeatCountdownTimerRunnable {
     private TextView display, notice;
     private Runnable counter;
 
+    /**
+     * Constructs a RepeatCountdownTimerRunnable with duration, number of times to repeat,
+     * a view to display remaining time, and a view to display remaining loop.
+     *
+     * @param millis duration in milliseconds
+     * @param loop number of times to repeat this countdown
+     * @param v view to display remaining time
+     * @param n view to display remaining loop
+     */
+
     public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) {
-        /**
-         * Constructs a RepeatCountdownTimerRunnable with duration, number of times to repeat,
-         * a view to display remaining time, and a view to display remaining loop.
-         *
-         * @param millis duration in milliseconds
-         * @param loop number of times to repeat this countdown
-         * @param v view to display remaining time
-         * @param n view to display remaining loop
-         */
 
         if (loop < 0) {
             throw new IllegalArgumentException("loop count must be >= 0");
@@ -83,31 +84,33 @@ public class RepeatCountdownTimerRunnable {
         };
     }
 
+    /**
+     * Starts the countdown by posting the runnable and updates UI
+     */
+
     public void start() {
-        /**
-         * Starts the countdown by creating the runnable, biding it to pre-defined handler
-         * in this class and post the newly created runnable
-         */
         Log.d("countdown", "starting");
         notice.setText(Integer.toString(loopNum) + " loops remaining");
         handler.post(counter);
     }
 
+    /**
+     * Stops this countdown and reset the current time counter
+     */
+
     public void cancel() {
-        /**
-         * Stops this countdown and reset the current time counter
-         */
         handler.removeCallbacksAndMessages(null);
         Log.d("countdown", "cancelled!");
         display.setText("Cancelled");
         currentMillis = timeInMillis;
     }
 
+    /**
+     * Pause this countdown by emptying the handler's callback queue.
+     * The current time counter stores the time remaining in this countdown.
+     */
+
     public void pause() {
-        /**
-         * Pause this countdown by emptying the handler's callback queue.
-         * The current time counter stores the time remaining in this countdown.
-         */
         // stops the countdown runnable
         handler.removeCallbacksAndMessages(null);
         Log.d("countdown", "pause");
@@ -115,6 +118,9 @@ public class RepeatCountdownTimerRunnable {
         // TODO: check this method for possible bugs
     }
 
+    /**
+     * Resume the paused countdown by posting the runnable
+     */
     public void resume() {
         // TODO: resume countdown with saved time and loop count
         handler.postDelayed(counter, INTERVAL);
