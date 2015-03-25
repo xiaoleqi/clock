@@ -29,6 +29,7 @@ public class RepeatCountdownTimerRunnable {
      * @param loop number of times to repeat this countdown
      * @param v view to display remaining time
      * @param n view to display remaining loop
+     * TODO: FORMAT TIME TO DISPLAY AS MINUTES AND SECONDS
      */
 
     public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) {
@@ -102,6 +103,7 @@ public class RepeatCountdownTimerRunnable {
         handler.removeCallbacksAndMessages(null);
         Log.d("countdown", "cancelled!");
         display.setText("Cancelled");
+        notice.setText("");
         currentMillis = timeInMillis;
     }
 
@@ -124,6 +126,7 @@ public class RepeatCountdownTimerRunnable {
     public void resume() {
         // TODO: resume countdown with saved time and loop count
         handler.postDelayed(counter, INTERVAL);
+        notice.setText(Integer.toString(currentLoop) + " loops remaining");
     }
 
 

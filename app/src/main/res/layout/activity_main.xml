@@ -12,9 +12,8 @@
         android:text="@string/display_countdown"
         android:id="@+id/countdown"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/messageDisplay"
-        android:layout_alignEnd="@+id/messageDisplay"
-        android:layout_marginTop="149dp" />
+        android:layout_marginTop="149dp"
+        android:layout_centerInParent="true" />
 
     <Button
         android:layout_width="wrap_content"
