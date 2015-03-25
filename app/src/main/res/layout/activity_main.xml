@@ -11,8 +11,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/display_countdown"
         android:id="@+id/countdown"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/messageDisplay"
+        android:layout_alignEnd="@+id/messageDisplay"
+        android:layout_marginTop="149dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -53,6 +55,15 @@
         android:layout_below="@+id/start"
         android:layout_centerHorizontal="true"
         android:onClick="pauseCountdown"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="resume"
+        android:id="@+id/resume"
+        android:layout_below="@+id/cancel"
+        android:onClick="resumeCountdown"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

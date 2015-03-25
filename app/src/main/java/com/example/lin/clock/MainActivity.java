@@ -45,6 +45,10 @@ public class MainActivity extends ActionBarActivity {
     public void pauseCountdown(View v){
         runnableTimer.pause();
     }
+
+    public void resumeCountdown(View v){
+        runnableTimer.resume();
+    }
     /* debug
 
     public void selfDestruct(View view) {

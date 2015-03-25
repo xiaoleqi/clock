@@ -19,6 +19,39 @@ public class RepeatCountdownTimerRunnable {
     private Handler handler;
     private int loopNum, currentLoop;
     private TextView display, notice;
+    private Runnable counter = new Runnable() {
+
+        @Override
+        public void run() {
+            // for debug purposes
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                Log.d("countdown", "running on UI thread!");
+            }
+            if (currentMillis <= 0) {
+                // reset countdown time
+                currentMillis = timeInMillis;
+                // repeat countdown if necessary
+                if (currentLoop > 0) {
+                    Log.d("countdown", "repeating");
+                    handler.post(this);
+                    currentLoop--;
+                    notice.setText(Integer.toString(currentLoop) + " loops remaining");
+                } else {
+                    // done with this countdown
+                    Log.d("countdown", "done!");
+                    display.setText("Done!");
+                    notice.setText("");
+                    // reset loop count to original
+                    currentLoop = loopNum;
+                }
+            } else {
+                Log.d("countdown", Long.toString(currentMillis / 1000));
+                display.setText(Long.toString(currentMillis / 1000));
+                currentMillis -= INTERVAL;
+                handler.postDelayed(this, INTERVAL);
+            }
+        }
+    };
 
     public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) {
         /**
@@ -56,39 +89,7 @@ public class RepeatCountdownTimerRunnable {
         Log.d("countdown", "starting");
         //create the runnable which does the countdown
         //TODO: declare this as an instance variable?
-        final Runnable counter = new Runnable() {
 
-            @Override
-            public void run() {
-                // for debug purposes
-                if (Looper.myLooper() == Looper.getMainLooper()) {
-                    Log.d("countdown", "running on UI thread!");
-                }
-                if (currentMillis <= 0) {
-                    // reset countdown time
-                    currentMillis = timeInMillis;
-                    // repeat countdown if necessary
-                    if (currentLoop > 0) {
-                        Log.d("countdown", "repeating");
-                        handler.post(this);
-                        currentLoop--;
-                        notice.setText(Integer.toString(currentLoop) + " loops remaining");
-                    } else {
-                        // done with this countdown
-                        Log.d("countdown", "done!");
-                        display.setText("Done!");
-                        notice.setText("");
-                        // reset loop count to original
-                        currentLoop = loopNum;
-                    }
-                } else {
-                    Log.d("countdown", Long.toString(currentMillis / 1000));
-                    display.setText(Long.toString(currentMillis / 1000));
-                    currentMillis -= INTERVAL;
-                    handler.postDelayed(this, INTERVAL);
-                }
-            }
-        };
         notice.setText(Integer.toString(loopNum) + " loops remaining");
         handler.post(counter);
     }
@@ -117,6 +118,7 @@ public class RepeatCountdownTimerRunnable {
 
     public void resume() {
         // TODO: resume countdown with saved time and loop count
+        handler.postDelayed(counter, INTERVAL);
     }
 
 
