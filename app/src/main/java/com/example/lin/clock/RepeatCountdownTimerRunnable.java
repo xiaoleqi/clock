@@ -35,7 +35,7 @@ public class RepeatCountdownTimerRunnable {
     public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) {
 
         if (loop < 0) {
-            throw new IllegalArgumentException("loop count must be >= 0");
+            throw new IllegalArgumentException("loop count must be a positive integer or 0");
         }
         if (millis < INTERVAL) {
             throw new IllegalArgumentException(String.format("time must be at least %d millisecond",

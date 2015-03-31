@@ -20,13 +20,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /* debug
-
-        msgView = (TextView)findViewById(R.id.messageDisplay);
-        b = (Button)findViewById(R.id.b);
-        ct = new RepeatCountDownTimer(3000, 3, tv, msgView);
-        ct.startCountDown();
-        */
         tv = (TextView)findViewById(R.id.countdown);
         msgView = (TextView)findViewById(R.id.messageDisplay);
         /* attempt to format time
@@ -54,29 +47,7 @@ public class MainActivity extends ActionBarActivity {
     public void resumeCountdown(View v){
         runnableTimer.resume();
     }
-    /* debug
 
-    public void selfDestruct(View view) {
-
-        ct.start();
-
-    }
-
-    public void stopClock(View view){
-        boolean on = ((ToggleButton) view).isChecked();
-        if(on) {
-            ct.cancel();
-        }else{
-            ct.start();
-        }
-    }
-    public void restart() {
-        if(i > 0) {
-            ct.start();
-            i--;
-        }
-    }
-    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
