@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Performs countdown in background thread and provides methods for starting, cancelling, pausing
  * and resuming a countdown. The running thread in this class updates UI elements periodically, or
@@ -32,10 +34,10 @@ public class RepeatCountdownTimerRunnable {
      * TODO: FORMAT TIME TO DISPLAY AS MINUTES AND SECONDS
      */
 
-    public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) {
+    public RepeatCountdownTimerRunnable(long millis, int loop, TextView v, TextView n) throws IllegalArgumentException{
 
         if (loop < 0) {
-            throw new IllegalArgumentException("loop count must be a positive integer or 0");
+            throw new IllegalArgumentException("loop count must be >= 0");
         }
         if (millis < INTERVAL) {
             throw new IllegalArgumentException(String.format("time must be at least %d millisecond",
@@ -77,7 +79,10 @@ public class RepeatCountdownTimerRunnable {
                     }
                 } else {
                     Log.d("countdown", Long.toString(currentMillis / 1000));
-                    display.setText(Long.toString(currentMillis / 1000));
+                    long tempMinute = TimeUnit.MILLISECONDS.toMinutes(currentMillis);
+                    long tempSecond = TimeUnit.MILLISECONDS.toSeconds(currentMillis);
+                    String timeOnscreen = String.format("%d min %d sec", tempMinute, tempSecond);
+                    display.setText(timeOnscreen);
                     currentMillis -= INTERVAL;
                     handler.postDelayed(this, INTERVAL);
                 }

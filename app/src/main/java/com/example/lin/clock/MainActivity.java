@@ -2,6 +2,7 @@ package com.example.lin.clock;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +29,13 @@ public class MainActivity extends ActionBarActivity {
         String timeOnscreen = String.format("%d min %d sec", tempMinute, tempSecond);
         tv.setText(timeOnscreen);
         */
-        runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv, msgView);
+
+        try{
+            runnableTimer = new RepeatCountdownTimerRunnable(total, i, tv, msgView);
+        }
+        catch (IllegalArgumentException e){
+            Log.d("countdown", e.getMessage());
+        }
 
     }
 
